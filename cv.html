@@ -1,27 +1,44 @@
 <!doctype html><html>
 <head>
-<script type="text/javascript" src="noframework.waypoints.min.js"></script>
+  <meta charset="utf-8">
+  <style>
+  html, body{margin:0;padding:0;width:100%;height:100%;}
+  .slide{width:100vw;height:100vh;position:absolute;top:0;left:0;display:table;}
+    #intro{z-index:10;}
+    #frontend{z-index:20;}
+    #diseno{z-index:30;}
+  .each{opacity:0;transition:opacity 0.5s;}
+  #background{width:100vw;height:600vh;}
+  </style>
 </head>
 <body>
-  <div class="slide" id="intro">
-      <p>Tomás Perales Monroy</p>
-      <p>Programador front-end, diseñador e ilustrador.</p>
-      <p>Lema: la web se merece tal y cual.</p>
+
+
+
+<p id="scrollhud" style="position:fixed;right:0;top:0;padding:5px;background-color:white;z-index:10;">Scroll: 0 px<br>Alto de pantalla:</p>
+
+
+
+
+<div id="fixedwrapper" style="position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:0;display:table;text-align:center;">
+  <div class="slide each" id="intro">
+    <p>Tomás Perales Monroy</p>
+    <p>Programador front-end, diseñador e ilustrador.</p>
+    <p>Lema: la web se merece tal y cual.</p>
   </div>
-  <div class="slide" id="frontend">
-      <p>Soy front-end y molo.</p>
-      <div class="tech" id="html5_css3">
+  <div class="slide each" id="frontend">
+      <div id="html5css3">he
       </div>
-      <div class="tech" id="javascript">
+      <div id="javascript">ha
       </div>
-      <div class="tech" id="jquery">
+      <div id="jquery">hu
       </div>
-      <div class="tech" id="angular">
+      <div id="angular">hi
       </div>
-      <div class="tech" id="git">
+      <div id="git">ho
       </div>
   </div>
-  <div class="slide" id="diseno">
+  <div class="slide each" id="diseno">
       <p>Diseño webs. Adaptables al dispositivo, eficientes y diseñadas para la experiencia de usuario más cómoda.</p>
       <div id="examples">
         <div id="remakepilates">
@@ -35,17 +52,83 @@
         </div>
       </div>
       <div id="showsites">
+        ña
       </div>
   </div>
-  <div class="slide" id="ilustracion">
+  <div class="slide each" id="ilustracion">Ilustración
 
   </div>
-  <div class="slide" id="marketing">
+  <div class="slide each" id="marketing">Marketing
 
   </div>
-  <div class="slide" id="contacto">
+  <div class="slide each" id="contacto">Contacto
 
   </div>
+
+
+
+
+
+</div>
+
+<div id="background">
+
+</div>
+
+<script>
+
+var viewportheight = document.querySelector('#fixedwrapper').offsetHeight;
+var position = 0;
+document.querySelector("#scrollhud").innerHTML = 'Scroll: ' + position + ' px <br> Alto de pantalla: ' + viewportheight + ' px';
+
+
+var htmlcss = document.querySelector('#html5css3');
+var javascript = document.querySelector('#javascript');
+var intro = document.querySelector('#intro');
+var frontend = document.querySelector('#frontend');
+var diseno = document.querySelector('#diseno');
+var ilustracion = document.querySelector('#ilustracion');
+var marketing = document.querySelector('#marketing');
+var contacto = document.querySelector('#contacto');
+
+
+
+function scrollshow(obj, minscrollmultip, maxscrollmultip){
+  if(position >= (minscrollmultip * viewportheight) && position <= (maxscrollmultip * viewportheight)){
+    obj.style.opacity = 1;
+  }
+  else{
+    obj.style.opacity = 0;
+  }
+}
+
+window.onload = function(){scrollshow(intro, 0, 1);};
+
+window.onscroll = function(){
+  position = window.pageYOffset;
+  document.querySelector("#scrollhud").innerHTML = 'Scroll: ' + position + ' px <br> Alto de pantalla: ' + viewportheight + ' px';
+  scrollshow(intro, 0, 1);
+  scrollshow(frontend, 1, 2);
+  scrollshow(diseno, 2, 3);
+  scrollshow(ilustracion, 3, 4);
+  scrollshow(marketing, 4, 5);
+  scrollshow(contacto, 5, 6);
+}
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
